@@ -382,17 +382,17 @@ function deviceChanged(device) {
 }
 
 function freeBuffers() {
-	clSphereBuffer.releaseCLResources();
-	clCameraBuffer.releaseCLResources();
-	clPixelsBuffer.releaseCLResources();
-	clColorBuffer.releaseCLResources();
-	clSeedBuffer.releaseCLResources();
+	clSphereBuffer.release();
+	clCameraBuffer.release();
+	clPixelsBuffer.release();
+	clColorBuffer.release();
+	clSeedBuffer.release();
 
-	clQueue.releaseCLResources();
-	clProgram.releaseCLResources();
-	clKernelsSmallPT.releaseCLResources();
-	clKernelsToneMapping.releaseCLResources();
-	cl.releaseCLResources();
+	clQueue.release();
+	clProgram.release();
+	clKernelsSmallPT.release();
+	clKernelsToneMapping.release();
+	cl.release();
 }
 
 function allocateBuffers() {
