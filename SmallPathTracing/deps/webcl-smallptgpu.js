@@ -446,7 +446,6 @@ function clDeviceQuery() {
 			}
 		}
 	}
-	console.log(deviceList);
 	return deviceList;
 }
 
