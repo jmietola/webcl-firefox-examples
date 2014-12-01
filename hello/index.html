@@ -78,7 +78,7 @@ function InitCL()
             return null;
         }
 
-        cl = window.WebCL;
+        cl = webcl;
         if(cl === null) {
             console.error("No webcl object available");
             return;
@@ -92,7 +92,10 @@ function InitCL()
         platform = platforms[0];
 
         // Connect to a compute device
-        devices = platform.getDevices(gpu ? cl.DEVICE_TYPE_GPU : cl.DEVICE_TYPE_CPU);
+
+        //Choose default device
+        devices = platform.getDevices();
+
         if(devices.length === 0)
         {
             console.error("No devices available");
@@ -103,7 +106,6 @@ function InitCL()
         // Create a compute context
         context = cl.createContext();
         // Other way to create a webcl context is passing a property object.
-        // e.g cl.createContext({platform: platform, devices: devices, deviceType: cl.DEVICE_TYPE_GPU});
 
         // Create a command queue
         queue = context.createCommandQueue(device, null);
@@ -146,7 +148,7 @@ function InitCL()
 
         // Execute the kernel over the entire range of our 1d input data set
         // using the maximum number of work group items for this device
-        queue.enqueueNDRangeKernel(kernel, globalWorkSize.length, [], globalWorkSize, localWorkSize, []);
+        queue.enqueueNDRangeKernel(kernel, globalWorkSize.length, null, globalWorkSize, localWorkSize);
 
         // Wait for the command queue to get serviced before reading back results
         queue.finish();
