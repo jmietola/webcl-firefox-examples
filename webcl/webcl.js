@@ -1,4 +1,4 @@
-window.webcl = (function (debug) {
+window.WebCLAPI = (function (debug) {
 
     function fail(thing) {
         throw new Error(thing);
